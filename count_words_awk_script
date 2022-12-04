@@ -1,0 +1,24 @@
+{
+  for (i=1; i<=NF; i++)
+  {
+    word=tolower($i)
+    count=all_words[word]
+    if (count == 0)
+    {
+      all_words[word]=1
+      print $1
+    }
+    else
+    {
+      all_words[word]=count + 1
+    }
+    print $count
+  }
+
+}
+END {
+  for (word in all_words)
+  {
+    print word"\t"all_words[word]
+  }
+}

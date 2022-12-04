@@ -1,0 +1,331 @@
+Script started on 2022-12-02 21:40:45-05:00
+vivian@sjsu:~/vivian[vivian@sjsu vivian]$ mkdir A6
+vivian@sjsu:~/vivian[vivian@sjsu vivian]$ 
+[vivian@sjsu vivian]$ cd A6
+
+#
+# You have two groups of clusters, users with less than 3 replies (not too influential) and with 3 or more replies (more influential).
+# Consider the most influential users who got 3 replies or more (just replies, not retweets). Here are 3 questions:
+
+
+
+############
+# 
+# 1- How many such influential users exist?
+# 
+
+# Create both no-robot files
+
+
+[vivian@sjsu A6]$ grep "type=replied_to" ../downloaded_tweets_extend_nolf2.tsv | awk -F "\t" '$2!=$6' > downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv
+[vivian@sjsu A6]$ wc -l downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv
+5646 downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv
+head downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv
+1516601473219629056	308045021	2022-04-20 02:15:42+00:00	MyBigFatGreekWedding	[<ReferencedTweet id=1516408716442038272 type=replied_to]	42052422		@NiaVardalos You Persevered ..! #MyBigFatGreekWedding is one of my hubby’s favorite films. Keep writing. Keep believing in yourself. Congrats on ur persistence!
+1518364021627715587	1353306974939738113	2022-04-24 22:59:27+00:00	corruption	[<ReferencedTweet id=1518303748271058945 type=replied_to]	33750798		@ScottWalker Ugh.  No one wants to look at your face. #corruption
+1516884365267062789	1353306974939738113	2022-04-20 20:59:49+00:00	"racists,homophobes"	[<ReferencedTweet id=1516846444652683265 type=replied_to]	1542228578		@JDVance1 @DonaldJTrumpJr Gag. Just a bunch of losers reminiscing about losing the last election. #racists #homophobes
+1508571329129287682	1353306974939738113	2022-03-28 22:26:47+00:00	"gay,gay,gay,gay"	[<ReferencedTweet id=1508116080849563658 type=replied_to]	334715818		"@BuckUUUUUUton My goodness!! You must live in heaven. Just think of all the problems across the world and the number one problem you tweet about is mill in your coffee. My goodness, aren’t you a privileged little princess. #gay #gay #gay #gay @cnn @ChristinaPushaw"
+1520317978331516930	199452338	2022-04-30 08:23:46+00:00	"FBPE,FollowBackFriday"	[<ReferencedTweet id=1519934787238211586 type=replied_to]	1217529719362637826		@MrJingle14 Just followed. Hope you had a good #FBPE #FollowBackFriday 🙏
+1520317280080510976	199452338	2022-04-30 08:21:00+00:00	"FBPE,FollowBackFriday"	[<ReferencedTweet id=1519997484340236292 type=replied_to]	26553835		@JackTheHat11 Just followed. Hope you both had a good #FBPE #FollowBackFriday 👏
+1520312497575714821	199452338	2022-04-30 08:02:00+00:00	"FBPE,FollowBackFriday"	[<ReferencedTweet id=1520122805295239168 type=replied_to]	812078560286490625		@Coops19632016 Just followed back.  Hope you had a good #FBPE #FollowBackFriday 🙏
+1520312349382660096	199452338	2022-04-30 08:01:24+00:00	"FBPE,FollowBackFriday"	[<ReferencedTweet id=1520138883530477569 type=replied_to]	19602251		@nicolainlondon Just followed back Nicola.  Hope you had a good #FBPE #FollowBackFriday 🙏
+1520312104695341056	199452338	2022-04-30 08:00:26+00:00	"FBPE,FollowBackFriday"	[<ReferencedTweet id=1520172338272161792 type=replied_to]	1276912994258243584		@ditotts Just followed Diana.  Hope you had a good #FBPE #FollowBackFriday 🙏
+1520311946284777473	199452338	2022-04-30 07:59:48+00:00	"FBPE,FollowBackFriday"	[<ReferencedTweet id=1520118640993087491 type=replied_to]	65214759		@organicbotanic Just followed Sue.  Hope you had a good #FBPE #FollowBackFriday 🙏
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$ grep "type=replied_to" ../downloaded_tweets_extend_nolf2.tsv | awk -F "\t" '$2!=$6' > downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv
+[vivian@sjsu A6]$ wc -l downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsv
+2113 downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsv
+[vivian@sjsu A6]$ head downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsv
+1074379984423215104	73452506	2018-12-16 19:05:23+00:00	"authoritarianism,FT"	[<ReferencedTweet id=1074359443498983424 type=replied_to]	807095		"@nytimes “One of the first open hearings we’re going to have is on the rise of #authoritarianism around the world,"" @RepAdamSchiff ""There is a global rise of autocracy that ought to concern every American. This is the new ideological struggle that we’re in.” https://t.co/dHJYQHT17b #FT$"
+1117453001638207489	2147604445	2019-04-14 15:42:11+00:00	BorisJohnson	[<ReferencedTweet id=1117371973112225793 type=replied_to]	621533		@BBCPolitics LET ME REMIND EVERYONE. I was at a Party in the early 90’s  where #BorisJohnson came up to me making Monkey noises  and tried to hand me a Water Melon. If you think that’s he’s fit to be PM then you’re as much of a racist PIG as he is
+1121299490584113152	888042960549552129	2019-04-25 06:26:45+00:00	MelanieShaw	[<ReferencedTweet id=1120982666457829376 type=replied_to]	209584092		"@DannyShawBBC It looks like, based on the responses, this may well be political bunkum.   However, #MelanieShaw said she has experienced prison without hygiene resources. This was before she was denied a visit from her social worker. Is that a general occurrence or special ‘treatment’ for Mel?"
+1129996316426342401	2748061373	2019-05-19 06:24:50+00:00	MelanieShaw	[<ReferencedTweet id=1129421674569490436 type=replied_to]	1066744429854236672		@HeleneG46816352 Thank you for retweeting. We have been working for many years to help get the lid off child abuse and many people researching commenting bringing evidence forward &amp; challenging the State cover-up is very powerful. #MelanieShaw has spent 24 months in solitary to try &amp; silence her
+1135151217439596544	872158753008877569	2019-06-02 11:48:34+00:00	"NHS,Brexit"	[<ReferencedTweet id=1135141940989693954 type=replied_to]	722242009		@carolecadwalla Remember what John Major said in 2016. The #NHS is as safe in the hands of the #Brexit at-all-costs as a hamster in a cage with a python https://t.co/jEYZdWW4KP
+1301086316956774404	2412223020	2020-09-02 09:15:25+00:00	auspol	[<ReferencedTweet id=1301059786184761344 type=replied_to]	8197942		"@SBSNews So, according to devoutly religious Tony Abbott...  In relation to abortion, life is sacred In relation to euthanasia, life is sacred In relation to the economy, cull the old  He's never been a profound or consistent thinker! Or, in fact, much of a thinker at all. #auspol"
+1304148522736861185	3657013654	2020-09-10 20:03:32+00:00	USAorInc	[<ReferencedTweet id=1304124104702820352 type=replied_to]	767788995962998784		@ReallyAmerican1 Donald Trump represents Trump Inc not the USA. #USAorInc https://t.co/2ie1CHdmTu
+1307129411603509255	182663887	2020-09-19 01:28:31+00:00	"Julian,FreeJulianRRRRRRange,FreeJulianRRRRRRangeNow"	[<ReferencedTweet id=1306205472521891840 type=replied_to]1246440482760085504		@StellaMoris1 Please take action for #Julian &amp; for us all: https://t.co/hfTwn4YAjp https://t.co/wILwIr7V5C https://t.co/NMh7Uf308u https://t.co/OoRqkPQ9f8 https://t.co/AgwdXddhXb https://t.co/hBkJmiboEU https://t.co/DC75M2rOV0 https://t.co/Rn8afQkAgn  #FreeJulianRRRRRRange #FreeJulianRRRRRRangeNow https://t.co/leRao9EtzO
+1323695097104551937	250691621	2020-11-03 18:34:38+00:00	TrumpLiedPeopleDied	[<ReferencedTweet id=1323615834455994373 type=replied_to]	21722318		@willchamberlain #TrumpLiedPeopleDied Lindsey Graham knew. Marco Rubio knew. Ted Cruz knew. Rand Paul knew. Nikki Haley knew. Kellyanne Conway knew. Mike Pompeo knew. Glenn Beck knew. Rick Perry knew. Susan Collins knew.  They all knew. https://t.co/UM4v1KdWMP
+1337553068620181506	1317220261050056704	2020-12-12 00:21:16+00:00	VoteBlue	[<ReferencedTweet id=1337552237514592256 type=replied_to]	380268462		"@steve_vladeck @brooks_rosa @JoeBiden 2030 History Book:  ""If the GOP had control of the House in 2020, the fragile Democracy known as the USA would have been declared null and void.""  #VoteBlue stop suffering these fools."
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$
+[vivian@sjsu A6]$
+
+
+#
+# get users that got replied to at least 3 times in downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv
+#
+[vivian@sjsu A6]$ cut -f6 downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv | sort | uniq -c | sort -nr | awk '{if ($1 >=3) print $0}' > cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_nolf2_REPLIES.NOBOTS.tsv
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ head cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_nolf2_REPLIES.NOBOTS.tsv
+     35 19739126
+     29 956266072440635392
+     25 492736486
+     21 1236324668640047105
+     18 90732175
+     18 26347394
+     17 2245822809
+     16 351120282
+     16 19604599
+     14 877968869138329601
+[vivian@sjsu A6]$ wc -l cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_nolf2_REPLIES.NOBOTS.tsv
+289 cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_nolf2_REPLIES.NOBOTS.tsv
+[vivian@sjsu A6]$ 
+
+#
+# get users that got replied to at least 3 times in downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsv
+#
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ cut -f6 downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsv | sort | uniq -c | sort -nr | awk '{if ($1 >=3) print $0}' > cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_original_nolf2_REPLIES.NOBOTS.tsv
+[vivian@sjsu A6]$ head cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_original_nolf2_REPLIES.NOBOTS.tsv
+     45 3453306553
+     27 29447428
+     14 1238370241169616897
+     13 1108565574
+     12 19739126
+     11 21525682
+     10 95091601
+     10 48624704
+     10 1462548977367359490
+      9 26217297
+[vivian@sjsu A6]$ wc -l cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_original_nolf2_REPLIES.NOBOTS.tsv
+112 cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_original_nolf2_REPLIES.NOBOTS.tsv
+
+
+#
+# count unique users in those two files
+#
+[vivian@sjsu A6]$ cat cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_nolf2_REPLIES.NOBOTS.tsv cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_original_nolf2_REPLIES.NOBOTS.tsv | awk '{print $2}' | sort | uniq -c | wc -l
+368
+
+
+#
+# ANSWER: 368
+#
+
+
+############
+#
+# 2- How many users replied to them in total?
+#
+
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ echo 'Q2- How many users replied to them in total?'
+
+
+#
+# combine tweet data files into one
+#
+
+[vivian@sjsu A6]$ cat downloaded_tweets_extend_original_nolf2_REPLIES.NOBOTS.tsv downloaded_tweets_extend_nolf2_REPLIES.NOBOTS.tsv > combined_two_downloaded_tweets_original_and_extend.tsv
+[vivian@sjsu A6]$ head combined_two_downloaded_tweets_original_and_extend.tsv 
+1074379984423215104	73452506	2018-12-16 19:05:23+00:00	"authoritarianism,FT"	[<ReferencedTweet id=1074359443498983424 type=replied_to]	807095		"@nytimes “One of the first open hearings we’re going to have is on the rise of #authoritarianism around the world,"" @RepAdamSchiff ""There is a global rise of autocracy that ought to concern every American. This is the new ideological struggle that we’re in.” https://t.co/dHJYQHT17b #FT$"
+1117453001638207489	2147604445	2019-04-14 15:42:11+00:00	BorisJohnson	[<ReferencedTweet id=1117371973112225793 type=replied_to]	621533		@BBCPolitics LET ME REMIND EVERYONE. I was at a Party in the early 90’s  where #BorisJohnson came up to me making Monkey noises  and tried to hand me a Water Melon. If you think that’s he’s fit to be PM then you’re as much of a racist PIG as he is
+1121299490584113152	888042960549552129	2019-04-25 06:26:45+00:00	MelanieShaw	[<ReferencedTweet id=1120982666457829376 type=replied_to]	209584092		"@DannyShawBBC It looks like, based on the responses, this may well be political bunkum.   However, #MelanieShaw said she has experienced prison without hygiene resources. This was before she was denied a visit from her social worker. Is that a general occurrence or special ‘treatment’ for Mel?"
+1129996316426342401	2748061373	2019-05-19 06:24:50+00:00	MelanieShaw	[<ReferencedTweet id=1129421674569490436 type=replied_to]	1066744429854236672		@HeleneG46816352 Thank you for retweeting. We have been working for many years to help get the lid off child abuse and many people researching commenting bringing evidence forward &amp; challenging the State cover-up is very powerful. #MelanieShaw has spent 24 months in solitary to try &amp; silence her
+1135151217439596544	872158753008877569	2019-06-02 11:48:34+00:00	"NHS,Brexit"	[<ReferencedTweet id=1135141940989693954 type=replied_to]	722242009		@carolecadwalla Remember what John Major said in 2016. The #NHS is as safe in the hands of the #Brexit at-all-costs as a hamster in a cage with a python https://t.co/jEYZdWW4KP
+1301086316956774404	2412223020	2020-09-02 09:15:25+00:00	auspol	[<ReferencedTweet id=1301059786184761344 type=replied_to]	8197942		"@SBSNews So, according to devoutly religious Tony Abbott...  In relation to abortion, life is sacred In relation to euthanasia, life is sacred In relation to the economy, cull the old  He's never been a profound or consistent thinker! Or, in fact, much of a thinker at all. #auspol"
+1304148522736861185	3657013654	2020-09-10 20:03:32+00:00	USAorInc	[<ReferencedTweet id=1304124104702820352 type=replied_to]	767788995962998784		@ReallyAmerican1 Donald Trump represents Trump Inc not the USA. #USAorInc https://t.co/2ie1CHdmTu
+1307129411603509255	182663887	2020-09-19 01:28:31+00:00	"Julian,FreeJulianRRRRRRange,FreeJulianRRRRRRangeNow"	[<ReferencedTweet id=1306205472521891840 type=replied_to]	1246440482760085504		@StellaMoris1 Please take action for #Julian &amp; for us all: https://t.co/hfTwn4YAjp https://t.co/wILwIr7V5C https://t.co/NMh7Uf308u https://t.co/OoRqkPQ9f8 https://t.co/AgwdXddhXb https://t.co/hBkJmiboEU https://t.co/DC75M2rOV0 https://t.co/Rn8afQkAgn  #FreeJulianRRRRRRange #FreeJulianRRRRRRangeNow https://t.co/leRao9EtzO
+1323695097104551937	250691621	2020-11-03 18:34:38+00:00	TrumpLiedPeopleDied	[<ReferencedTweet id=1323615834455994373 type=replied_to]	21722318		@willchamberlain #TrumpLiedPeopleDied Lindsey Graham knew. Marco Rubio knew. Ted Cruz knew. Rand Paul knew. Nikki Haley knew. Kellyanne Conway knew. Mike Pompeo knew. Glenn Beck knew. Rick Perry knew. Susan Collins knew.  They all knew. https://t.co/UM4v1KdWMP
+1337553068620181506	1317220261050056704	2020-12-12 00:21:16+00:00	VoteBlue	[<ReferencedTweet id=1337552237514592256 type=replied_to]	380268462		"@steve_vladeck @brooks_rosa @JoeBiden 2030 History Book:  ""If the GOP had control of the House in 2020, the fragile Democracy known as the USA would have been declared null and void.""  #VoteBlue stop suffering these fools."
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+
+#
+# get combined list of authors
+#
+[vivian@sjsu A6]$ cat cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_nolf2_REPLIES.NOBOTS.tsv cutf6_uniqc_awk3Rgreater_orig_authorIDs_extend_original_nolf2_REPLIES.NOBOTS.tsv | awk '{print $2}' | sort | uniq > 368_influencers_3Rgreater_original_authorIDs.tsv
+[vivian@sjsu A6]$ head 368_influencers_3Rgreater_original_authorIDs.tsv
+1003107003693137921
+1005846500583321601
+1020602380096696320
+1029041185808109568
+1031000589054828544
+1046608631968538624
+105433445
+1060751816
+1066773270773547008
+1073606435580325889
+[vivian@sjsu A6]$ wc -l 368_influencers_3Rgreater_original_authorIDs.tsv
+368 368_influencers_3Rgreater_original_authorIDs.tsv
+
+#
+# get corresponding message IDs in tweet files
+#
+[vivian@sjsu A6]$ cut -f1,6 combined_two_downloaded_tweets_original_and_extend.tsv | fgrep -f 368_influencers_3Rgreater_original_authorIDs.tsv | cut -f1 > fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv
+[vivian@sjsu A6]$ head fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv
+1074379984423215104
+1135151217439596544
+1432453664313065474
+1448091110572691458
+1460329259562680327
+1467079666704044036
+1475910747477749772
+1476577077289787398
+1477253096015376384
+1477266328784416771
+[vivian@sjsu A6]$ wc -l fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv
+2174 fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv
+
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+
+#
+# use messageIds to get authors of messages
+#
+
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ fgrep -f fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv combined_two_downloaded_tweets_original_and_extend.tsv | cut -f2 | sort | uniq | wc -l
+570
+
+#
+# ANSWER: 570
+#
+
+
+############
+#
+# 3- How many of the users who replied to the influential users also got replied to from any other user (at least once)?
+#
+
+#
+# Get list of repliers
+#
+
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ fgrep -f fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv combined_two_downloaded_tweets_original_and_extend.tsv | cut -f2 | sort | uniq > 570_repliers_from_fgrep_fgrep368_with_combined_file_cutf2_sort_uniq.tsv
+[vivian@sjsu A6]$ head 570_repliers_from_fgrep_fgrep368_with_combined_file_cutf2_sort_uniq.tsv 
+1010320666648645632
+1010593116
+1017039921255624705
+1017962856
+1018660693
+1020789978639536128
+102162577
+1024179554
+1028022611324747776
+1031000589054828544
+
+#
+# find the repliers in column 6 (in_reply_to_user_id)
+# 
+
+[vivian@sjsu A6]$ cut -f6 combined_two_downloaded_tweets_original_and_extend.tsv | grep -f 570_repliers_from_fgrep_fgrep368_with_combined_file_cutf2_sort_uniq.tsv | sort | uniq -c| wc -l
+85
+
+
+#
+# ANSWER: 85
+#
+
+
+
+
+##########
+#
+# 4- Extract the dates of the replies in format YY-MM-DD and find the top 10 dates on which the most replies happened. Your output will look something like this:
+#
+
+#
+# Use the message IDs from earlier to filter the tweets and get top dates
+#
+# 
+# [vivian@sjsu A6]$ cut -f1,3 combined_two_downloaded_tweets_original_and_extend.tsv | fgrep -f fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv | awk '{print $2}' | sort | uniq -c | sort -nr -k 1 | head
+     35 2022-02-24
+     35 2022-02-23
+     34 2022-02-17
+     33 2022-02-26
+     31 2022-02-16
+     29 2022-04-29
+     29 2022-02-12
+     28 2022-04-25
+     28 2022-04-08
+     28 2022-02-07
+
+
+##########
+#
+# Repeat what you did in worksheets 7 and 8 to find the most frequent words (not considering stopwords) in the tweet text (last column) for those users. 
+# Which words are the most frequent in that tweet text? Are they what you expected based on the frequent hashtags from previous assignments?
+#
+
+#
+# use message IDs from earlier to filter the tweets and then filter message bodies 
+#
+[vivian@sjsu A6]$ cut -f1,8 combined_two_downloaded_tweets_original_and_extend.tsv | fgrep -f fgrep368_influencers_with_combined_file_cutf1_message_IDs.tsv | cut -f2 | sed -r "s/<\w+ *\/?>//g; s/[^a-zA-Z']/ /g; s/\b[a-zA-Z']{1,3}\b//g; s/\b(this|that|with|from|what|about|they|have|more|will|would|some|there|their|which|just|https|your)\b/ /ig" > Q5_tweets_body_filtered.tsv
+[vivian@sjsu A6]$ head Q5_tweets_body_filtered.tsv
+  nytimes     first open hearings   going       rise   authoritarianism around  world     RepAdamSchiff       global rise  autocracy   ought  concern every American       ideological struggle              dHJYQHT      
+ carolecadwalla Remember   John Major said             safe   hands    Brexit   costs   hamster   cage    python       jEYZdWW 
+  joncoopertweets          quick retweets    ThankYouJoe trending      final American planes exit Afghanistan  President Biden  finally ended America  longest    Retweet    reply    ThankYouJoe  thank President Biden  bringing    troops home    ThankYouJoe  
+ Reuters     lunatic Governor  Texas  Abbott   well    ResignAbbott   TexasWarOnWomen   TexasWarOnScience
+  julesserkin  gaurd    AnneLyn          bobby    ccwriter   helmets   dasvee  hibbsy      BOTRAINER  JaneyCMJ  Beck Sall  netpoette  BreesAnna  TonyHinton      GardenerSpike     julesserkin   lucky   alive    lucky   walk  unlike  philippagrace     received  BATCH    SAME BATCH AstraZeneca           cyclist before       walk    diagnosed Guillain Barre Syndrome  Thoughts   family   LisaShaw    
+  HowardGriffiths  bloods  still  mess    still miles      really good chance      going  clear  ever      self inject thinners every     Simple   point   thank     hurt  angry    everything  wish  wasn    VITT Till    
+ HowardGriffiths  VisitFaroe  wonder    people haven  visited      programme        BoycottFaroeIslands  StopTheGrind       aBgUeZj  
+  NickKnudsenUS  tink       citizens voted overwhelmingly  couple years   create   commission   tried  stop actual formation   commission  taking   court appeal  route   thankfully    denied   district   looking very fair   ThereIsHope  VoteBlueToSaveAmerica 
+ HowardGriffiths  VisitFaroe Thank  Howard  supporting  StopTheGrind  
+  HowardGriffiths Since  religion  Islam       chance  avoid   danger     hope      Year    people   world    consciously freed    dangers  alcohol consumption   HappyNewYear   HAPPYNEWYEAR         
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ 
+
+#
+# use awk script from previous assignment to count words
+#
+
+[vivian@sjsu A6]$ cat count_words_awk_script
+{
+  for (i=1; i<=NF; i++)
+  {
+    word=tolower($i)
+    count=all_words[word]
+    if (count == 0)
+    {
+      all_words[word]=1
+      print $1
+    }
+    else
+    {
+      all_words[word]=count + 1
+    }
+    print $count
+  }
+
+}
+END {
+  for (word in all_words)
+  {
+    print word"\t"all_words[word]
+  }
+}
+
+[vivian@sjsu A6]$ 
+[vivian@sjsu A6]$ awk -f count_words_awk_script  Q5_tweets_body_filtered.tsv | sort -k2 -nr | head -n 10
+covid	239
+ford	175
+people	126
+like	109
+putinhitler	105
+ontario	102
+canada	99
+good	93
+doug	93
+need	91
+[vivian@sjsu A6]$ 
+
+
+# ANSWER: Some are expected, like covid and Putin, but not ford or ontario
+
+
+
+
+
+
